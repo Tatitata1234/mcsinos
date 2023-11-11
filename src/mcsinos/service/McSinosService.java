@@ -3,12 +3,13 @@ package mcsinos.service;
 import mcsinos.entity.Order;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Queue;
 
 public class McSinosService {
 
-    Queue<Order> orders = new ArrayDeque<>();
+    private Queue<Order> orders = new ArrayDeque<>();
     
     public void order(Order order) {
         orders.add(order);
