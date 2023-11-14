@@ -1,11 +1,10 @@
 package mcsinos.service;
 
 import mcsinos.entity.Order;
+import mcsinos.enumerator.MenuItem;
+import java.util.StringJoiner;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Queue;
+import java.util.*;
 
 public class McSinosService {
 
@@ -16,7 +15,11 @@ public class McSinosService {
     }
 
     public String showOrderQueue() {
-        return Arrays.toString(orders.toArray());
+        StringJoiner sj = new StringJoiner("\n");
+        for (Order order : orders) {
+            sj.add(order.toString());
+        }
+        return sj.toString();
     }
 
     public Order delivery() {

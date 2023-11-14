@@ -4,6 +4,7 @@ import mcsinos.enumerator.MenuItem;
 
 import java.util.List;
 import java.util.Random;
+import java.util.StringJoiner;
 
 public class Order  {
     int id;
@@ -14,14 +15,18 @@ public class Order  {
         this.items = List.of(items);
     }
 
-    public Order(MenuItem... items) {
+    public Order(List<MenuItem> items) {
         this.id = new Random().nextInt(100);
-        this.items = List.of(items);
+        this.items = items;
     }
 
     @Override
     public String toString() {
-        return "Order\n{id=" + id + ", items=" + items + "}";
+        StringJoiner sj = new StringJoiner(", ", this.id + " → ", "");
+        for (MenuItem item : items) {
+            sj.add(item.toString());
+        }
+        return sj.toString();
     }
 
 }

@@ -14,7 +14,7 @@ public class Menu {
                 case 1 -> options.showOrderList();
                 case 2 -> options.takeOrder();
                 case 3 -> options.deliverOrder();
-                case 5 -> keepLoop = false;
+                case 4 -> keepLoop = false;
                 default -> out.println("Resposta Não Encontrada!");
             }
         }

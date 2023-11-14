@@ -31,30 +31,40 @@ public class Options {
     }
 
     public void showOrderList() {
+        out.println(ConsoleColors.BLUE_BOLD + "\n========== Pedidos em Andamento ==========" + ConsoleColors.RESET);
         out.println(service.showOrderQueue());
     }
 
     public void takeOrder() {
         out.println(ConsoleColors.BLUE_BOLD + "\n=========== Menu ===========" + ConsoleColors.RESET);
+        List<MenuItem> items = new ArrayList<>();
         showMenuItems();
-        MenuItem choosedOrder = chooseOrder();
-        Order order = new Order(choosedOrder);
+        while (true) {
+            MenuItem choosedOrder = chooseOrder();
+            if (choosedOrder == null) {
+                Order order = new Order(items);
+                service.order(order);
+                break;
+            }
+            items.add(choosedOrder);
+        }
     }
 
     private void showMenuItems() {
         for (int i = 0; i < menuItems.size(); i++) {
             out.println(i+1 + ". " + menuItems.get(i));
         }
-        for (MenuItem info : EnumSet.allOf(MenuItem.class)) {
-            System.out.println(info);
-        }
+        out.println(menuItems.size()+1 + ". Finalizar pedido");
     }
 
     private MenuItem chooseOrder() {
         while (true) {
-            int numOrder = entry.leInt("Escolha o pedido: ");
-            if (numOrder < menuItems.size()) {
-                return menuItems.get(numOrder-1);
+            int numOrder = entry.leInt("Escolha um item: ");
+            if (numOrder-1 < menuItems.size()) {
+                return (MenuItem) menuItems.get(numOrder-1);
+            }
+            if (numOrder-1 == menuItems.size()) {
+                return null;
             }
             out.println("Pedido inválido!");
         }
