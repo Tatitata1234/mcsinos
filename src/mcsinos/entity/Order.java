@@ -3,7 +3,6 @@ package mcsinos.entity;
 import mcsinos.enumerator.MenuItem;
 
 import java.util.List;
-import java.util.Random;
 import java.util.StringJoiner;
 
 public class Order  {
@@ -15,8 +14,8 @@ public class Order  {
         this.items = List.of(items);
     }
 
-    public Order(List<MenuItem> items) {
-        this.id = new Random().nextInt(100);
+    public Order(int id, List<MenuItem> items) {
+        this.id = id;
         this.items = items;
     }
 

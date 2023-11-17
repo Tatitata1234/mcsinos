@@ -13,6 +13,7 @@ public class Options {
     Entry entry;
     McSinosService service = new McSinosService();
     List<Enum> menuItems = Arrays.asList(MenuItem.values());
+    int idKey = 100;
 
     // Construtor
     public Options() {
@@ -42,7 +43,8 @@ public class Options {
         while (true) {
             MenuItem choosedOrder = chooseOrder();
             if (choosedOrder == null) {
-                Order order = new Order(items);
+                Order order = new Order(idKey, items);
+                this.idKey += 1;
                 service.order(order);
                 break;
             }
@@ -66,7 +68,7 @@ public class Options {
             if (numOrder-1 == menuItems.size()) {
                 return null;
             }
-            out.println("Pedido inválido!");
+            out.println(ConsoleColors.RED + "Pedido inválido!" + ConsoleColors.RED);
         }
     }
 
