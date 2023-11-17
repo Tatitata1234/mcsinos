@@ -36,19 +36,4 @@ public class Entry {
             System.out.println(invalidoMsg);
         }
     }
-
-    /**
-     * Lê um caracter e printa uma mensagem antes
-     * @return char
-     */
-    public char leChar(String msg) {
-        while (true) {
-            System.out.print(msg);
-            String s = scanner.nextLine();
-            if (s != null) {
-                return s.charAt(0);
-            }
-            System.out.println(invalidoMsg);
-        }
-    }
 }

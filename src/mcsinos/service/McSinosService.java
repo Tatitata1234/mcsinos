@@ -2,16 +2,21 @@ package mcsinos.service;
 
 import mcsinos.entity.Order;
 import mcsinos.enumerator.MenuItem;
+
 import java.util.StringJoiner;
 
 import java.util.*;
 
 public class McSinosService {
 
-    private Queue<Order> orders = new ArrayDeque<>();
-    
+    private final Queue<Order> orders = new ArrayDeque<>();
+
     public void order(Order order) {
         orders.add(order);
+    }
+
+    public void order(List<MenuItem> items) {
+        orders.add(new Order(getNextId(), items));
     }
 
     public String showOrderQueue() {

@@ -12,6 +12,7 @@ public class McSinosServiceTest {
     @Test
     public void shouldDeliveredFirst(){
         McSinosService service = new McSinosService();
+
         Order orderOne = new Order(1,MenuItem.HAMBURGUER, MenuItem.FRENCH_FRIES, MenuItem.SODA);
         Order orderTwo = new Order(2,MenuItem.HAMBURGUER, MenuItem.FRENCH_FRIES, MenuItem.ICE_CREAM);
         service.order(orderOne);
@@ -29,7 +30,7 @@ public class McSinosServiceTest {
         service.order(orderTwo);
         service.delivery();
         String queue = service.showOrderQueue();
-        assertEquals("[Order\n{id=2, items=[Hamburguer, French fries, Ice cream]}]", queue);
+        assertEquals("2 → Hamburguer, French fries, Ice cream", queue);
     }
 
     @Test
@@ -40,6 +41,6 @@ public class McSinosServiceTest {
         service.order(orderOne);
         service.order(orderTwo);
         String queue = service.showOrderQueue();
-        assertEquals("[Order\n{id=1, items=[Hamburguer, French fries, Soda]}, Order\n{id=2, items=[Hamburguer, French fries, Ice cream]}]", queue);
+        assertEquals("1 → Hamburguer, French fries, Soda\n2 → Hamburguer, French fries, Ice cream", queue);
     }
 }

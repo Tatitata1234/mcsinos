@@ -1,5 +1,4 @@
 package mcsinos.interactions;
-import mcsinos.entity.Order;
 import mcsinos.enumerator.MenuItem;
 import mcsinos.service.McSinosService;
 
@@ -12,8 +11,7 @@ public class Options {
     Scanner scanner;
     Entry entry;
     McSinosService service = new McSinosService();
-    List<Enum> menuItems = Arrays.asList(MenuItem.values());
-    int idKey = 100;
+    List<MenuItem> menuItems = Arrays.asList(MenuItem.values());
 
     // Construtor
     public Options() {
@@ -43,9 +41,7 @@ public class Options {
         while (true) {
             MenuItem choosedOrder = chooseOrder();
             if (choosedOrder == null) {
-                Order order = new Order(idKey, items);
-                this.idKey += 1;
-                service.order(order);
+                service.order(items);
                 break;
             }
             items.add(choosedOrder);
@@ -63,7 +59,7 @@ public class Options {
         while (true) {
             int numOrder = entry.leInt("Escolha um item: ");
             if (numOrder-1 < menuItems.size()) {
-                return (MenuItem) menuItems.get(numOrder-1);
+                return menuItems.get(numOrder-1);
             }
             if (numOrder-1 == menuItems.size()) {
                 return null;
