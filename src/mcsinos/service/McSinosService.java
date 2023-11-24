@@ -10,6 +10,7 @@ import java.util.*;
 public class McSinosService {
 
     private final Queue<Order> orders = new ArrayDeque<>();
+    private int nextId = 0;
 
     public void order(Order order) {
         orders.add(order);
@@ -32,7 +33,8 @@ public class McSinosService {
     }
 
     public int getNextId(){
-        return orders.size() + 1;
+        this.nextId += 1;
+        return nextId;
     }
 
 }
